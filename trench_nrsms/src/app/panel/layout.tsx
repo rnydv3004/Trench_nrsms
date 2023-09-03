@@ -7,9 +7,9 @@ export default function DashboardLayout({
   children: React.ReactNode;
 }) {
   return (
-    <section className="max-h-screen w-screen flex flex-col overflow-hidden">
+    <section className="h-screen w-screen flex flex-col justify-start items-start select-none overflow-hidden">
       <Header />
-      <div className="min-h-full w-screen flex">
+      <div className="h-full w-screen flex">
         <Sidenavcomponent/>
         {children}
       </div>

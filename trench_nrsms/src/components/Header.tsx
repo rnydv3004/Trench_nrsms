@@ -7,15 +7,21 @@ import Tooltip from '@mui/material/Tooltip';
 
 export default function Header() {
     return (
-        <div className='h-14 w-screen text-blue-600 overflow-hidden bg-white p-3 flex justify-between items-center border-b-2 gap-2'>
-            <MenuIcon className='border-2 border-slate-300 rounded-lg h-full w-fit p-1' />
+        <div className='min-h-14 w-screen text-white overflow-hidden bg-slate-800 p-3 flex justify-between items-center border-b-2 gap-2 border-slate-500'>
+            <MenuIcon className='border-2 border-white rounded-lg h-full w-fit p-1 cursor-pointer' />
             <div className='flex justify-center items-center gap-2 h-full'>
+
+                {/* SEARCH */}
                 <Searchcomponent />
+
+                {/* MESSAGE */}
                 <Tooltip title={"Message"}>
-                    <ChatIcon className='border-2 border-slate-300 rounded-lg h-full w-fit p-1' />
+                    <ChatIcon className='border-2 border-slate-300 rounded-lg h-full w-fit p-1 cursor-pointer' />
                 </Tooltip>
+
+                {/* NOTIFICATION */}
                 <Tooltip title={"Message"}>
-                    <NotificationsIcon className='border-2 border-slate-300 rounded-lg h-full w-fit p-1' />
+                    <NotificationsIcon className='border-2 border-slate-300 rounded-lg h-full w-fit p-1 cursor-pointer' />
                 </Tooltip>
             </div>
         </div>
