@@ -1,4 +1,6 @@
-import React from 'react'
+'use client'
+
+import React, { useState, useEffect } from 'react'
 import SchoolIcon from '@mui/icons-material/School';
 import UnfoldMoreIcon from '@mui/icons-material/UnfoldMore';
 import { Tooltip } from '@mui/material';
@@ -14,23 +16,47 @@ import ClassIcon from '@mui/icons-material/Class';
 import EmojiEventsIcon from '@mui/icons-material/EmojiEvents';
 import AssignmentIndIcon from '@mui/icons-material/AssignmentInd';
 import BoyIcon from '@mui/icons-material/Boy';
-
-const menuItems = [
-    { icon: <SpaceDashboardIcon className='h-full' />   , text: 'Dashboard' },
-    { icon: <AssignmentIndIcon className='h-full' />    , text: 'Staff' },
-    { icon: <BoyIcon className='h-full' />              , text: 'Students' },
-    { icon: <WcIcon className='h-full' />               , text: 'Parents' },
-    { icon: <AutoStoriesIcon className='h-full' />      , text: 'Subjects' },
-    { icon: <ClassIcon className='h-full' />            , text: 'Class' },
-    { icon: <AssignmentIcon className='h-full' />       , text: 'Exams' },
-    { icon: <EmojiEventsIcon className='h-full' />      , text: 'Competition' },
-    { icon: <EmailIcon className='h-full' />            , text: 'Applications' },
-    { icon: <ReportIcon className='h-full' />           , text: 'Complaints' },
-    { icon: <PaymentIcon className='h-full' />          , text: 'Fees & Payments' },
-];
+import Link from 'next/link';
+import { usePathname, useRouter } from 'next/navigation';
 
 
 export default function Sidenavcomponent() {
+
+    const router = useRouter();
+
+    const [menuItems, setMenuItems] = useState([
+        { icon: <SpaceDashboardIcon className='h-full' />, text: 'Dashboard', status: true },
+        { icon: <AssignmentIndIcon className='h-full' />, text: 'Staff', status: false },
+        { icon: <BoyIcon className='h-full' />, text: 'Students', status: false },
+        { icon: <WcIcon className='h-full' />, text: 'Parents', status: false },
+        { icon: <AutoStoriesIcon className='h-full' />, text: 'Subjects', status: false },
+        { icon: <ClassIcon className='h-full' />, text: 'Class', status: false },
+        { icon: <AssignmentIcon className='h-full' />, text: 'Exams', status: false },
+        { icon: <EmojiEventsIcon className='h-full' />, text: 'Competition', status: false },
+        { icon: <EmailIcon className='h-full' />, text: 'Applications', status: false },
+        { icon: <ReportIcon className='h-full' />, text: 'Complaints', status: false },
+        { icon: <PaymentIcon className='h-full' />, text: 'Fees & Payments', status: false },
+    ]);
+
+    const handleMenuItemClick = (clickedIndex: number) => {
+        const updatedMenuItems = menuItems.map((menuItem, index) => ({
+            ...menuItem,
+            status: index === clickedIndex, // Set status to true for the clicked item, false for others
+        }));
+        setMenuItems(updatedMenuItems);
+    };
+    
+    const currentPath = usePathname(); // Get the current route pathname
+
+    useEffect(() => {
+        
+        const updatedMenuItems = menuItems.map((menuItem) => ({
+            ...menuItem,
+            status: currentPath.endsWith(menuItem.text.toLowerCase()), // Check if the pathname ends with menuItem.text
+        }));
+        setMenuItems(updatedMenuItems);
+    }, [usePathname()]);
+    
 
     return (
         <div className='flex flex-col h-[calc(100vh-3.5rem)] bg-slate-800 w-64 p-2 pb-0 border-r-2'>
@@ -60,13 +86,16 @@ export default function Sidenavcomponent() {
             <nav className='px-2 cursor-pointer text-black text-base font-semibold w-full bg-slate-00 mb-2 rounded-lg overflow-y-scroll overflow-x-hidden'>
                 <ul>
                     {menuItems.map((menuItem, index) => (
-                        <li
-                            key={index}
-                            className='group flex flex-start items-center gap-4 hover:bg-white text-white hover:text-slate-800 p-2 rounded-r-full'
-                        >
-                            <span className='group-hover:scale-125 transition-transform transform ease-in-out duration-300'>{menuItem.icon}</span>
-                            <span className='text-sm'>{menuItem.text}</span>
-                        </li>
+                        <Link href={`/panel/${menuItem.text.toLowerCase()}`}>
+                            <li
+                                key={index}
+                                onClick={()=>{handleMenuItemClick(index)}}
+                                className={`${menuItem.status ? 'bg-white text-slate-800' : 'bg-transparent text-white'} hover:bg-white text-slate-800 hover:text-slate-800 active:bg-slate-300 group flex flex-start items-center gap-4 p-2 rounded-r-full `}
+                            >
+                                <span className='group-hover:scale-125 transition-transform transform ease-in-out duration-300'>{menuItem.icon}</span>
+                                <span className='text-sm'>{menuItem.text}</span>
+                            </li>
+                        </Link>
                     ))}
                 </ul>
             </nav>

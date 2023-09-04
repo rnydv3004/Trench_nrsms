@@ -12,11 +12,11 @@ export default function Profilebar() {
     <div className="h-full text-inherit font-semibold box-border flex justify-center items-center ">
       {login ? (
         <Tooltip title={"User"}>
-          <PermIdentityIcon className="border-2 border-slate-300 rounded-lg h-full w-fit p-1" onClick={()=>{setLogin(false)}}/>
+          <PermIdentityIcon className="border-2 cursor-pointer border-slate-300 rounded-lg h-full w-fit p-1" onClick={()=>{setLogin(false)}}/>
         </Tooltip>
       ) : (
         <Tooltip title={"Log in"}>
-          <LoginIcon className="border-2 border-slate-300 rounded-lg h-full w-fit p-1" onClick={()=>{setLogin(true)}}/>
+          <LoginIcon className="border-2 cursor-pointer border-slate-300 rounded-lg h-full w-fit p-1" onClick={()=>{setLogin(true)}}/>
         </Tooltip>
       )}
     </div>

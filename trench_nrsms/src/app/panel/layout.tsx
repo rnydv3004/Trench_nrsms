@@ -10,7 +10,7 @@ export default function DashboardLayout({
     <section className="h-screen w-screen flex flex-col justify-start items-start select-none overflow-hidden">
       <Header />
       <div className="h-full w-screen flex">
-        <Sidenavcomponent/>
+        <Sidenavcomponent />
         {children}
       </div>
     </section>
