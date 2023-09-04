@@ -1,5 +1,6 @@
 import Header from "@/components/Header";
 import Sidenavcomponent from "@/components/Sidenavcomponent";
+import { Toaster } from 'react-hot-toast';
 
 export default function DashboardLayout({
   children, // will be a page or nested layout
@@ -12,6 +13,7 @@ export default function DashboardLayout({
       <div className="h-full w-screen flex">
         <Sidenavcomponent />
         {children}
+        <Toaster/>
       </div>
     </section>
   );
