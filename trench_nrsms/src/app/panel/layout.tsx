@@ -13,7 +13,6 @@ export default function DashboardLayout({
       <div className="h-full w-screen flex">
         <Sidenavcomponent />
         {children}
-        <Toaster/>
       </div>
     </section>
   );
