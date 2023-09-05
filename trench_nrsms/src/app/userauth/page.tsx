@@ -27,7 +27,7 @@ export default function page() {
 
   return (
     <div
-      className='bg-white h-screen w-screen flex justify-center items-center px-5'>
+      className='bg-white h-screen w-screen flex justify-center items-center px-5 overflow-hidden'>
       <div className='bg-white my-6 rounded-lg shadow-sm shadow-gray-500 p-10 flex flex-col justify-center items-center gap-6 text-slate-800'>
         
         <h4 className='font-semibold text-2xl text-blue-900 select-none'>
@@ -37,7 +37,7 @@ export default function page() {
         <div className='relative flex flex-col justify-center items-start'>
           <label
             htmlFor="user-email"
-            className='absolute select-none -top-3 text-slate-500 font-normal text-sm text-left w-fit bg-white px-1 mx-3'>{user.email?'Email':''}</label>
+            className='absolute select-none -top-3 text-slate-500 font-normal text-sm text-left w-fit bg-white px-1 mx-3'>{user.email ? 'Email' : ''}</label>
           <input
             id='user-email'
             className='border-2 border-blue-600 outline-green-400 rounded-lg py-2 px-3 text-slate-600 font-medium'
@@ -74,11 +74,11 @@ export default function page() {
               loginUser()
           }}
         >{signUpMode ? 'Sign Up' : 'Log in'}</button>
-        <label
-          onClick={() => {
-            setSignUpMode(!signUpMode)
-          }}
-          className='text-xs cursor-pointer select-none'>{signUpMode ? <span>Already Have an account?</span> : <span>Don't have an account?</span>}</label>
+          <label
+            onClick={() => {
+              setSignUpMode(!signUpMode)
+            }}
+            className='text-xs cursor-pointer select-none'>{signUpMode ? <span>Already Have an account?</span> : <span>Don't have an account?</span>}</label>
       </div>
     </div>
   )
