@@ -2,8 +2,7 @@
 
 import React, { useState } from 'react'
 import { toast } from 'react-hot-toast';
-import axios from 'axios'
-import creteuserwithemailHandler from '@/handler/userauth';
+import createUserWithEmailHandler from '@/handler/userauth';
 
 export default function page() {
 
@@ -20,19 +19,17 @@ export default function page() {
   }
 
   function createUser() {
-
-    creteuserwithemailHandler(user.email, user.password)
-
+    createUserWithEmailHandler(user.email, user.password)
   }
 
   return (
     <div
       className='bg-white h-screen w-screen flex justify-center items-center px-5 overflow-hidden'>
       <div className='bg-white my-6 rounded-lg shadow-sm shadow-gray-500 p-10 flex flex-col justify-center items-center gap-6 text-slate-800'>
-        
+
         <h4 className='font-semibold text-2xl text-blue-900 select-none'>
           {signUpMode ? <span>Sign up</span> : <span>Log in</span>}
-          </h4>
+        </h4>
 
         <div className='relative flex flex-col justify-center items-start'>
           <label
@@ -53,7 +50,7 @@ export default function page() {
         <div className='relative flex flex-col justify-center items-start'>
           <label
             htmlFor="user-password"
-            className='absolute select-none -top-3 text-slate-500 font-normal text-sm text-left w-fit bg-white px-1 mx-3'>{user.email?'Password':''}</label>
+            className='absolute select-none -top-3 text-slate-500 font-normal text-sm text-left w-fit bg-white px-1 mx-3'>{user.email ? 'Password' : ''}</label>
           <input
             id='user-password'
             className='border-2 border-blue-600 outline-green-400 rounded-lg py-2 px-3 text-slate-600 font-medium'
@@ -74,11 +71,20 @@ export default function page() {
               loginUser()
           }}
         >{signUpMode ? 'Sign Up' : 'Log in'}</button>
+
+        <div className='flex flex-col gap-1 justify-center items-center'>
           <label
             onClick={() => {
               setSignUpMode(!signUpMode)
             }}
             className='text-xs cursor-pointer select-none'>{signUpMode ? <span>Already Have an account?</span> : <span>Don't have an account?</span>}</label>
+
+          <label
+            onClick={() => {
+            }}
+            className='text-xs cursor-pointer select-none'>{signUpMode ?'':<span>Forget Password?</span>}</label>
+
+        </div>
       </div>
     </div>
   )
